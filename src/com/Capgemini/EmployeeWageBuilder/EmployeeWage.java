@@ -1,9 +1,11 @@
 package com.Capgemini.EmployeeWageBuilder;
 
 import service.EmployeeWageInterface;
+import java.util.*;
 public class EmployeeWage implements EmployeeWageInterface{
 
-	CompanyEmployeeWage compArr[] = new CompanyEmployeeWage[2];
+	//CompanyEmployeeWage compArr[] = new CompanyEmployeeWage[2];
+	List<CompanyEmployeeWage> compArr = new ArrayList<CompanyEmployeeWage>();
 	private int numOfCompany = 0;
 	int day = 1;
 
@@ -16,16 +18,18 @@ public class EmployeeWage implements EmployeeWageInterface{
 	}
 
 	public void addCompanyEmployeeWage(String companyName, int empWage_per_hour, int max_working_days,int max_hours_of_work) {
-		compArr[numOfCompany] = new CompanyEmployeeWage(companyName, empWage_per_hour, max_working_days,max_hours_of_work);
+		compArr.add(new CompanyEmployeeWage(companyName, empWage_per_hour, max_working_days,max_hours_of_work));
 		numOfCompany++;
 	}
 
 	public void computeEmpWage() {
-		for (int i = 0; i < compArr.length; i++) {
-			System.out.println("******************  Details Of " + compArr[i].companyName+ " Starts From Here  ******************\n\n");
-			int totalEmployeeWage = this.computeEmpWage(compArr[i]);
-			System.out.println("Total Employee Wage of " + compArr[i].companyName + " for " + (day - 1) + " days "+ " is : " + totalEmployeeWage);
-			System.out.println("\n******************  Details Of " + compArr[i].companyName+ " Ends Here  ******************\n\n\n");
+		for (int i = 0; i < compArr.size(); i++) {
+			System.out.println("******************  Details Of " + compArr.get(i).companyName+ " Starts From Here  ******************\n\n");
+			int totalEmployeeWage = this.computeEmpWage(compArr.get(i));
+			compArr.get(i).setTotalEmployeeWage(totalEmployeeWage);
+			compArr.get(i).setNo_of_work_days(day-1);
+			System.out.println(compArr.get(i));
+			System.out.println("\n******************  Details Of " + compArr.get(i).companyName+ " Ends Here  ******************\n\n\n");
 		}
 	}
 
