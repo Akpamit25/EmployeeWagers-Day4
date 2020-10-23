@@ -66,3 +66,4 @@ public class EmployeeWage {
 
 	}
 }
+/* UC-8 & UC-9*/
