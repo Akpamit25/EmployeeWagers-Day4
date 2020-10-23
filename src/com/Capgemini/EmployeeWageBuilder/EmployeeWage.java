@@ -6,7 +6,9 @@ public class EmployeeWage implements EmployeeWageInterface{
 
 	//CompanyEmployeeWage compArr[] = new CompanyEmployeeWage[2];
 	List<CompanyEmployeeWage> compArr = new ArrayList<CompanyEmployeeWage>();
+	Map<String,CompanyEmployeeWage> compHash = new HashMap<>();
 	private int numOfCompany = 0;
+	int totalEmployeeWage = 0;
 	int day = 1;
 
 	public static void main(String[] args) {
@@ -14,11 +16,13 @@ public class EmployeeWage implements EmployeeWageInterface{
 		empWage.addCompanyEmployeeWage("Vmart", 22, 21, 100);
 		empWage.addCompanyEmployeeWage("Reliance", 25, 25, 130);
 		empWage.computeEmpWage();
-
+System.out.println(empWage.compHash.get("Vmart").totalEmployeeWage);
 	}
 
 	public void addCompanyEmployeeWage(String companyName, int empWage_per_hour, int max_working_days,int max_hours_of_work) {
-		compArr.add(new CompanyEmployeeWage(companyName, empWage_per_hour, max_working_days,max_hours_of_work));
+		CompanyEmployeeWage obj = new CompanyEmployeeWage(companyName, empWage_per_hour, max_working_days,max_hours_of_work);
+		compArr.add(obj);
+		compHash.put(companyName, obj);
 		numOfCompany++;
 	}
 
