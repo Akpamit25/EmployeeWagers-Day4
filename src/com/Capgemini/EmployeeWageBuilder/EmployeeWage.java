@@ -2,35 +2,36 @@ package com.Capgemini.EmployeeWageBuilder;
 
 public class EmployeeWage {
 
-	private String companyName;
-	private final int empWage_per_hour;
-	private final int max_working_days;
-	private final int max_hours_of_work;
-
-	public EmployeeWage(String companyName, int empWage_per_hour, int max_working_days, int max_hours_of_work) {
-		super();
-		this.companyName = companyName;
-		this.empWage_per_hour = empWage_per_hour;
-		this.max_working_days = max_working_days;
-		this.max_hours_of_work = max_hours_of_work;
-	}
+	CompanyEmployeeWage compArr[] = new CompanyEmployeeWage[2];
+	private int numOfCompany = 0;
+	int day = 1;
 
 	public static void main(String[] args) {
-		EmployeeWage Reliance = new EmployeeWage("Reliance", 20, 20, 100);
-		Reliance.checkEmployee();
-		EmployeeWage Vmart = new EmployeeWage("Vmart", 22, 18, 50);
-		Vmart.checkEmployee();
+		EmployeeWage empWage = new EmployeeWage();
+		empWage.addCompanyEmployeeWage("Vmart", 22, 21, 100);
+		empWage.addCompanyEmployeeWage("Reliance", 25, 25, 130);
+		empWage.computeEmpWage();
+
 	}
 
-	public void checkEmployee() {
-		int empHour = 0;
-		int totalEmployeeWage = 0;
-		int totalWorkingHour = 0;
-		System.out.println(
-				"******************  Details Of " + this.companyName + " Starts From Here  ******************\n\n");
+	public void addCompanyEmployeeWage(String companyName, int empWage_per_hour, int max_working_days,int max_hours_of_work) {
+		compArr[numOfCompany] = new CompanyEmployeeWage(companyName, empWage_per_hour, max_working_days,max_hours_of_work);
+		numOfCompany++;
+	}
 
-		for (int day = 1; day <= max_working_days; day++) {
-			if (totalWorkingHour <= max_hours_of_work) {
+	private void computeEmpWage() {
+		for (int i = 0; i < compArr.length; i++) {
+			System.out.println("******************  Details Of " + compArr[i].companyName+ " Starts From Here  ******************\n\n");
+			int totalEmployeeWage = this.computeEmpWage(compArr[i]);
+			System.out.println("Total Employee Wage of " + compArr[i].companyName + " for " + (day - 1) + " days "+ " is : " + totalEmployeeWage);
+			System.out.println("\n******************  Details Of " + compArr[i].companyName+ " Ends Here  ******************\n\n\n");
+		}
+	}
+
+	private int computeEmpWage(CompanyEmployeeWage compArr) {
+		int empHour = 0, totalWorkingHour = 0;
+		for (day = 1; day <= compArr.max_working_days; day++) {
+			if (totalWorkingHour <= compArr.max_hours_of_work) {
 				int x = (int) (Math.random() * 3);
 				switch (x) { // Using Switch Case
 				case 0:
@@ -53,17 +54,9 @@ public class EmployeeWage {
 				}
 
 				totalWorkingHour += empHour;
-				System.out.print("\nDay " + day + " Employee Hour = " + empHour + ", " + "Total Working Hour Till Day "
-						+ day + " =" + totalWorkingHour + "\n\n");
-				int wage = empHour * empWage_per_hour;
-				totalEmployeeWage += wage;
+				System.out.print("\nDay " + day + " Employee Hour = " + empHour + ", " + "Total Working Hour Till Day "+ day + " =" + totalWorkingHour + "\n\n");
 			}
 		}
-		System.out.println("\n Total Monthly Employee Wage For " + this.companyName + "=" + totalEmployeeWage);
-		System.out.println(" Total Monthly Working Hour For " + this.companyName + "=" + totalWorkingHour + "\n\n");
-		System.out
-				.println("******************  Details Of " + this.companyName + " Ends Here  ******************\n\n\n");
-
+		return totalWorkingHour * compArr.empWage_per_hour;
 	}
 }
-/* UC-8 & UC-9*/
