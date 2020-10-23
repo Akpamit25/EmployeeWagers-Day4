@@ -7,3 +7,4 @@ public interface EmployeeWageInterface {
 	 void computeEmpWage();
 	 int computeEmpWage(CompanyEmployeeWage compArr);
 }
+/*-----*/

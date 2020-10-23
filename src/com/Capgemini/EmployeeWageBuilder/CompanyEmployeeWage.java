@@ -7,7 +7,7 @@ public class CompanyEmployeeWage {
 	 final int max_working_days;
 	 final int max_hours_of_work;
 	 int totalEmployeeWage;
-	 int no_of_work_days;
+	 int no_of_work_days; //for printing no. of work days
 
 	public void setNo_of_work_days(int no_of_work_days) {
 		this.no_of_work_days = no_of_work_days;
@@ -31,3 +31,4 @@ public class CompanyEmployeeWage {
 		return "Total Employee Wage of "+ companyName+ " for "+no_of_work_days+" days is :"+ totalEmployeeWage;
 	}
 }
+/*-----*/

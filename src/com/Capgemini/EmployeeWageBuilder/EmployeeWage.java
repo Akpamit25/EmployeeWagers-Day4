@@ -64,4 +64,4 @@ public class EmployeeWage implements EmployeeWageInterface{
 		}
 		return totalWorkingHour * compArr.empWage_per_hour;
 	}
-}
+}/*-----*/
