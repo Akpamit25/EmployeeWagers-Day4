@@ -1,6 +1,7 @@
 package com.Capgemini.EmployeeWageBuilder;
 
-public class EmployeeWage {
+import service.EmployeeWageInterface;
+public class EmployeeWage implements EmployeeWageInterface{
 
 	CompanyEmployeeWage compArr[] = new CompanyEmployeeWage[2];
 	private int numOfCompany = 0;
@@ -19,7 +20,7 @@ public class EmployeeWage {
 		numOfCompany++;
 	}
 
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i = 0; i < compArr.length; i++) {
 			System.out.println("******************  Details Of " + compArr[i].companyName+ " Starts From Here  ******************\n\n");
 			int totalEmployeeWage = this.computeEmpWage(compArr[i]);
@@ -28,7 +29,7 @@ public class EmployeeWage {
 		}
 	}
 
-	private int computeEmpWage(CompanyEmployeeWage compArr) {
+	public int computeEmpWage(CompanyEmployeeWage compArr) {
 		int empHour = 0, totalWorkingHour = 0;
 		for (day = 1; day <= compArr.max_working_days; day++) {
 			if (totalWorkingHour <= compArr.max_hours_of_work) {
@@ -54,7 +55,7 @@ public class EmployeeWage {
 				}
 
 				totalWorkingHour += empHour;
-				System.out.print("\nDay " + day + " Employee Hour = " + empHour + ", " + "Total Working Hour Till Day "+ day + " =" + totalWorkingHour + "\n\n");
+				System.out.print("\nDay " + day + " Employee Hour = " + empHour + ", " + "Total Working Hour Till Day "	+ day + " =" + totalWorkingHour + "\n\n");
 			}
 		}
 		return totalWorkingHour * compArr.empWage_per_hour;

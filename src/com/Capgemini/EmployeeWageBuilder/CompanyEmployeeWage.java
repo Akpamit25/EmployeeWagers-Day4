@@ -7,6 +7,7 @@ public class CompanyEmployeeWage {
 	 final int max_working_days;
 	 final int max_hours_of_work;
 
+
 	public CompanyEmployeeWage(String companyName, int empWage_per_hour, int max_working_days, int max_hours_of_work) {
 		super();
 		this.companyName = companyName;
